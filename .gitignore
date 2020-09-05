@@ -131,3 +131,6 @@ dmypy.json
 
 migrations/
 blog/blog/config.py
+
+cert.crt
+cert.key

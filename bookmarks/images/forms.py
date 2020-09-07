@@ -29,9 +29,8 @@ class ImageForm(forms.ModelForm):
         image = super().save(commit=False)
         image_url = self.cleaned_data['url']
         extension = image_url.rsplit('.', 1)[1].lower()
-        name = slugify[image.title]
+        name = slugify(image.title)
         image_name = f'{name}.{extension}'
-
         response = request.urlopen(image_url)
         image.image.save(image_name,
                          ContentFile(response.read()),
@@ -39,5 +38,4 @@ class ImageForm(forms.ModelForm):
 
         if commit:
             image.save()
-
         return image

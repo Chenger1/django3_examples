@@ -1,11 +1,12 @@
 from django.urls import path
 
-from .views import image_create
+from .views import image_create, image_detail
 
 
-app_name='images'
+app_name = 'images'
 
 
 urlpatterns = [
     path('create/', image_create, name='image_create'),
+    path('detail/<int:id><slug:slug>', image_detail, name='image_detail'),
 ]

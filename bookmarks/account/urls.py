@@ -3,7 +3,7 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views import dashboard, register, edit
+from .views import dashboard, register, edit, user_list, user_detail
 
 
 urlpatterns = [
@@ -26,6 +26,8 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('register/', register, name='register'),
     path('edit/', edit, name='edit'),
+    path('users/', user_list, name='user_list'),
+    path('user/<username>/', user_detail, name='user_detail'),
 
 ]
 

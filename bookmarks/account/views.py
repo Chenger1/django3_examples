@@ -94,7 +94,7 @@ def user_list(request):
     except EmptyPage:
         users = paginator.page(paginator.num_pages)
 
-    return render(request, 'account/user/list.html',
+    return render(request, 'user/list.html',
                   {'section': 'people',
                    'users': users})
 
@@ -104,6 +104,6 @@ def user_detail(request, username):
     user = get_object_or_404(User, username=username,
                              is_active=True)
 
-    return render(request, 'account/user/detail.html',
+    return render(request, 'user/detail.html',
                   {'section': 'people',
                    'user': user})

@@ -12,6 +12,7 @@ from .forms import LoginForm, RegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile, Contact
 from common.decorators import ajax_required
 from actions.utils import create_actions
+from actions.models import Actions
 
 
 def user_login(request):
@@ -39,9 +40,18 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
+    actions = Actions.objects.exclude(user=request.user)
+    following_ids = request.user.following.values_list('id',
+                                                       flat=True)
+
+    if following_ids:
+        actions = actions.filter(user_id__in=following_ids)
+    actions = actions[:10]
+
     return render(request,
                   'account/dashboard.html',
-                  {'section': 'dashboard'})
+                  {'section': 'dashboard',
+                   'actions': actions})
 
 
 def register(request):

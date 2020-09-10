@@ -8,6 +8,7 @@ from common.decorators import ajax_required
 
 from .forms import ImageForm
 from .models import Image
+from actions.utils import create_actions
 
 
 @login_required
@@ -19,6 +20,7 @@ def image_create(request):
             new_image = image_form.save(commit=False)
             new_image.user = request.user
             new_image.save()
+            create_actions(request.user, 'bookmarket_items', new_image)
             messages.success(request, 'Image has been successfully added')
             return redirect(new_image.get_absolute_url())
     else:
@@ -47,6 +49,7 @@ def image_like(request):
             image = Image.objects.get(id=image_id)
             if action == 'like':
                 image.users_like.add(request.user)
+                create_actions(request.user, 'likes', image)
             else:
                 image.users_like.remove(request.user)
             return JsonResponse({'status': 'ok'})

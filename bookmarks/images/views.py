@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from common.decorators import ajax_required
 
@@ -82,3 +83,26 @@ def image_ranking(request):
     return render(request, 'images/image/ranking.html',
                   {'section': 'images',
                    'most_viewed': most_viewed})
+
+
+@login_required
+def image_list(request):
+    images = Image.objects.all()
+    paginator = Paginator(images, 1)
+    page = request.GET.get('page')
+
+    try:
+        images = paginator.page(page)
+    except PageNotAnInteger:
+        images = paginator.page(1)
+    except EmptyPage:
+        images = paginator.page(paginator.num_pages)
+
+    if request.is_ajax():
+        return render(request,
+                      'images/image/list_ajax.html',
+                      {'section': 'images', 'images': images})
+
+    return render(request,
+                  'images/image/list.html',
+                  {'section': 'images', 'images': images})

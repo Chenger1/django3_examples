@@ -9,7 +9,7 @@ class Category(TranslatableModel):
         name=models.CharField(max_length=200,
                               db_index=True),
         slug=models.SlugField(max_length=200,
-                              unique=True),
+                              unique=True)
     )
 
     class Meta:

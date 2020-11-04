@@ -32,11 +32,11 @@ class OwnerCourseMixin(OwnerMixin, LoginRequiredMixin, PermissionRequiredMixin):
 
 
 class OwnerCourseEditMixin(OwnerCourseMixin, OwnerEditMixin):
-    template_name = 'courses/manage/course/form.html'
+    template_name = 'manage/course/form.html'
 
 
 class ManageCourseListView(OwnerCourseMixin, ListView):
-    template_name = 'courses/manage/course/list.html'
+    template_name = 'manage/course/list.html'
     permission_required = 'courses.view_course'
 
 
@@ -49,5 +49,5 @@ class CourseUpdateView(OwnerCourseEditMixin, UpdateView):
 
 
 class CourseDeleteView(OwnerCourseMixin, DeleteView):
-    template_name = 'courses/manage/course/delete.html'
+    template_name = 'manage/course/delete.html'
     permission_required = 'courses.delete_course'

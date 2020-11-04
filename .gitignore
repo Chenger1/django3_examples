@@ -131,6 +131,7 @@ dmypy.json
 
 migrations/
 blog/blog/config.py
+educa/educa/config.py
 
 cert.crt
 cert.key

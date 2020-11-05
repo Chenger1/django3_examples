@@ -185,7 +185,7 @@ class ContentOrderView(CsrfExemptMixin,
 
 class CourseListView(TemplateResponseMixin, View):
     model = Course
-    template_name = 'courses/course/list.html'
+    template_name = 'course/list.html'
 
     def get(self, request, subject=None):
         subjects = Subject.objects.annotate(
@@ -205,4 +205,4 @@ class CourseListView(TemplateResponseMixin, View):
 
 class CourseDetailView(DetailView):
     model = Course
-    template_name = 'courses/course/detail.html'
+    template_name = 'course/detail.html'

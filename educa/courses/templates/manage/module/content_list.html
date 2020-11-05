@@ -64,7 +64,9 @@
       </ul>
     </div>
   {% endwith %}
+{% endblock %}
 
+{% block domready %}
   $('#modules').sortable({
       stop: function(event, ui) {
           modules_order = {};

@@ -41,7 +41,7 @@ class StudentEnrollCourseView(LoginRequiredMixin, FormView):
 
 class StudentCourseListView(LoginRequiredMixin, ListView):
     model = Course
-    template_name = 'students/course/list.html'
+    template_name = 'course/list.html'
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -50,7 +50,7 @@ class StudentCourseListView(LoginRequiredMixin, ListView):
 
 class StudentCourseDetailView(DetailView):
     model = Course
-    template_name = 'students/course/detail.html'
+    template_name = 'course/detail.html'
 
     def get_queryset(self):
         qs = super().get_queryset()

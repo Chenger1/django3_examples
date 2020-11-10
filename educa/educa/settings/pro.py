@@ -8,7 +8,7 @@ ADMIN = (
     ('nitron', 'admin@gmail.com'),
 )
 
-ALLOWED_HOSTS = ['educaproject.com', 'www.educaproject.com']
+ALLOWED_HOSTS = ['.educaproject.com', 'www.educaproject.com']
 
 DATABASES = {
     'default': {
